@@ -1,0 +1,11 @@
+= debug params
+%h3= "#{current_user.username}"
+= link_to "logout", logout_path
+= form_for @tweet do |f|
+  = f.fields_for current_user do |t|
+    = t.label :Message
+    = t.text_field :tweets, :placeholder => "Message"
+  = f.submit "save"
+%ul
+  - current_user.tweets.each do |tweet|
+    %li= tweet.message

@@ -4,8 +4,11 @@ class UsersController < ApplicationController
 
   #User Profile
   def index
-    @tweet = Tweet.new
     @user = current_user
+
+    respond_to do |format|
+      format.html
+    end
   end
 
   def show
