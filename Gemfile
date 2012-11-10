@@ -25,7 +25,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
-  gem 'roo'
 end
 
 group :production, :staging do
