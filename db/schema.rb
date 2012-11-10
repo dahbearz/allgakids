@@ -11,7 +11,42 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121110023457) do
+ActiveRecord::Schema.define(:version => 20121110191113) do
+
+  create_table "additional_programs", :force => true do |t|
+    t.string  "name"
+    t.integer "business_id"
+  end
+
+  create_table "businesses", :force => true do |t|
+    t.string  "type_of_care"
+    t.string  "name_of_contact"
+    t.string  "website"
+    t.string  "accreditation"
+    t.string  "financial_assistance"
+    t.integer "max_age"
+    t.integer "min_age"
+    t.integer "vacancies"
+    t.string  "name"
+    t.string  "telephone"
+    t.string  "email"
+    t.integer "location_id"
+  end
+
+  create_table "financial_assistances", :force => true do |t|
+    t.string  "name"
+    t.integer "business_id"
+  end
+
+  create_table "locations", :force => true do |t|
+    t.string "state"
+    t.string "address"
+    t.string "city"
+    t.string "county"
+    t.string "zipp"
+    t.float  "long"
+    t.float  "lat"
+  end
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false

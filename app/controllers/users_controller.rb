@@ -8,11 +8,17 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html
+      format.xml { render :xml => @user.to_xml }
     end
   end
 
   def show
     @user = current_user
+
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @user.xml}
+    end
   end
 
   def edit
@@ -23,7 +29,7 @@ class UsersController < ApplicationController
     @user = current_user # makes our views "cleaner" and more consistent
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
-      redirect_to users_path
+      redirect_to user_path
     else
       render :action => :edit
     end
@@ -35,11 +41,17 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    if @user.save
-      flash[:notice] = "Account registered!"
-      redirect_to users_path
-    else
-      render :action => :new
+
+    respond_to do |format|
+      format.html {
+        if(@user.save)
+          flash[:notice] = "Account registered!"
+          redirect_to(user_path(@user))
+        else
+          render(:action => :new)
+        end
+      }
+      format.xml { render :xml => @user }
     end
   end
 

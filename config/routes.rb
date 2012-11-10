@@ -3,6 +3,8 @@ Allgakids::Application.routes.draw do
 
   resources :users
   resources :user_sessions
+  resources :businesses
+  resources :locations
 
   match 'login', :to => 'user_sessions#new', :as => 'login'
   match 'logout', :to => 'user_sessions#destroy', :as => 'logout'
