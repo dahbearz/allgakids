@@ -1,6 +1,5 @@
 namespace :dummy do
-require 'CSV'
-
+  require 'csv'
   task :load_dummy => :environment do
     file = 'db/agk_app_data_draft.csv'
 
