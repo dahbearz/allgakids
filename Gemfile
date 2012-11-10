@@ -29,6 +29,10 @@ group :development, :test do
   gem 'roo'
 end
 
+group :production, :staging do
+  gem 'pg'
+end
+
 
 gem 'jquery-rails'
 
