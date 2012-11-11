@@ -4,7 +4,7 @@ class Location < ActiveRecord::Base
   attr_accessible :address, :city, :state, :zipp, :county, :lat, :long
 
   geocoded_by :full_address, :latitude  => :lat, :longitude => :long
-  after_validation :geocode
+  after_validation :geocode, :if => :address_changed?
 
   def full_address
     return self.address << "," << self.city << "," << self.state if address && city && state
