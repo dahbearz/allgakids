@@ -4,7 +4,8 @@ namespace :dummy do
     file = 'db/agk_app_data_draft.csv'
 
     CSV.foreach(file, :headers => true) do |row|
-      location = Location.find_by_address_and_state_and_city(row[14], row[13], row[3])
+      row[14]<<","<<row[3]<<","<<row[14]
+      location = Location.find_by_address(row[14], row[13], row[3])
       Business.create(
         :type_of_care     => row[0],
         :name             => row[2],
