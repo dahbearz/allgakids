@@ -3,7 +3,7 @@ class BusinessesController < ApplicationController
     unless params[:lat] && params[:lon]
       params[:lat] = 33.74891
       params[:lon] = -84.38811
-      params[:range = 10]
+      params[:range] = 20
     end
 
     @businesses = Business.scoped
