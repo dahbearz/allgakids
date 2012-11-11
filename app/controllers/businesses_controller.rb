@@ -6,7 +6,7 @@ class BusinessesController < ApplicationController
 
     respond_to do |format|
       format.xml { render :xml => @businesses }
-      format.json { render :json => params }
+      format.json { render :json => @businesses }
     end
   end
 
