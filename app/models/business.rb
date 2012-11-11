@@ -5,16 +5,23 @@ class Business < ActiveRecord::Base
 
   attr_accessible :name, :type_of_care, :email, :name_of_contact, :max_age, :min_age, :vacancies, :website, :location_id
 
+  def self.search(query)
+    businesses = scoped
+    businesses = businesses.where("type_of_care like ?", "%"+query[:type_of_care]) if query[:type_of_care]
+    businesses = businesses.where("max_age >= ? AND min_age <= ? ", query[:age],query[:age]) if query[:age]
+  end
+
+
   #This is a dynamic queries
   def self.by_name(query)
     where("name = (?)", query) if query
   end
 
-  def self.by_type_of_care(query)
-    query.each do |search|
-      where("type_of_care = (?)", search) if search
-    end
-  end
+  # def self.by_type_of_care(query)
+  #   query.each do |search|
+  #     where("type_of_care like ?", "%"+search+"%") if query[:type_of_care]
+  #   end
+  # end
 
   def self.by_accredidation(query)
     where("accredidation = (?)", query) if query
