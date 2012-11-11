@@ -4,9 +4,12 @@ namespace :dummy do
     file = 'db/agk_app_data_draft.csv'
 
     CSV.foreach(file, :headers => true) do |row|
-      row[14]<<","<<row[3]<<","<<row[14]
-      location = Location.find_by_address(row[14], row[13], row[3])
-      Business.create(
+      if( row[14] && row[3] && row[13])
+      location ||= Location.find_by_address(row[14].concat(",").concat(row[3]).concat(",").concat(row[13]))
+      else
+        location = Location.find(1)
+      end
+      Business.create({
         :type_of_care     => row[0],
         :name             => row[2],
         :email            => row[5],
@@ -16,7 +19,7 @@ namespace :dummy do
         :vacancies        => row[15],
         :website          => row[16],
         :location_id         => location.id
-      )
+      })
     end
   end
 
