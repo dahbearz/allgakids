@@ -8,7 +8,7 @@ class BusinessesController < ApplicationController
 
     respond_to do |format|
       format.xml { render :xml => @businesses }
-      format.json { render :json => @businessesas.to_json(:include => :locations) }
+      format.json { render :json => @businessesas.to_json(:include => :location) }
     end
   end
 
