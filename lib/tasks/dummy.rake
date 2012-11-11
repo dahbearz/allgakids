@@ -33,4 +33,6 @@ namespace :dummy do
         business.save
     end
   end
+
+  task :all => [:load_locations, :load_dummy, :replace_names]
 end
