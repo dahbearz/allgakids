@@ -5,9 +5,10 @@ class BusinessesController < ApplicationController
     @businesses = @businesses.where("max_age >= ? AND min_age <= ? ", params[:age],params[:age]) if params[:age]
     @businesses = @businesses.where("location_id IN (:location)", :location => Location.near([params[:lat],params[:lon]],params[:range],:order => :distance))
 
+
     respond_to do |format|
       format.xml { render :xml => @businesses }
-      format.json { render :json => @businesses }
+      format.json { render :json => @businessesas.as_json }
     end
   end
 
