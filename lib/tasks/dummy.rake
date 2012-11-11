@@ -25,4 +25,12 @@ namespace :dummy do
         Location.create({ :city => row[3], :county => row[4], :state => row[13], :zipp => row[17], :address => row[14] })
       end
   end
+
+  task :replace_names => :environment do
+    Business.where(:type_of_care => "Family Child Care").each do |business|
+        business.name = business.name_of_contact
+        puts business.name
+        business.save
+    end
+  end
 end
